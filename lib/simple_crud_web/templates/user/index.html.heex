@@ -1,0 +1,30 @@
+<h1>Lista de Usuário</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Descrição</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for user <- @users do %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= user.email %></td>
+      <td><%= user.description %></td>
+
+      <td>
+        <span><%= link "Exibir", to: Routes.user_path(@conn, :show, user) %></span>
+        <span><%= link "Editar", to: Routes.user_path(@conn, :edit, user) %></span>
+        <span><%= link "Apagar", to: Routes.user_path(@conn, :delete, user), method: :delete, data: [confirm: "Você está certo disso?"] %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "Novo Usuário", to: Routes.user_path(@conn, :new) %></span>
